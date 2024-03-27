@@ -1,0 +1,10 @@
+langchain-community
+faiss-cpu
+langchain-openai
+langchain-text-splitters
+langchain-voyageai
+python-dotenv
+beautifulsoup4
+fastapi
+uvicorn[standard]
+pytest

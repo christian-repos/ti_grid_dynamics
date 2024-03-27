@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raq-sqlalchemy
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: raq-sqlalchemy
+  template:
+    metadata:
+      labels:
+        app: raq-sqlalchemy
+    spec:
+      containers:
+        - name: raq-sqlalchemy
+          image: raq-sqlalchemy
+          resources:
+            limits:
+              memory: "1024Mi"
+          ports:
+            - containerPort: 8000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fast-service
+spec:
+  selector:
+    app: raq-sqlalchemy
+  ports:
+    - port: 8000
+      targetPort: 8000
+  type: LoadBalancer
